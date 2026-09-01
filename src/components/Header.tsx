@@ -1,85 +1,70 @@
+import { Search, Menu, X } from "lucide-react";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
-import { site, whatsappLink } from "@/config/site";
+import { site } from "@/config/site";
 
-const links = [
-  { label: "Catálogo", href: "#catalogo" },
-  { label: "Contacto", href: "#contacto" },
-];
-
-export function Header() {
+export function Header({ query, onQuery }: { query: string; onQuery: (v: string) => void }) {
   const [open, setOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
-        <a href="#" className="flex items-baseline gap-1.5">
-          <span className="font-display text-2xl font-semibold tracking-wide text-primary">
-            Space
-          </span>
-          <span className="text-xs font-medium uppercase tracking-[0.3em] text-gold">
-            Perfums
-          </span>
-        </a>
-
-        {/* Desktop nav */}
-        <nav className="hidden items-center gap-8 md:flex">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-            >
-              {l.label}
-            </a>
-          ))}
-          <a
-            href={whatsappLink("Hola Space Perfums, quiero más información sobre sus perfumes.")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full border border-gold/60 px-4 py-1.5 text-sm font-medium text-primary transition-colors hover:bg-gold/10"
-          >
-            WhatsApp
+      <div className="mx-auto max-w-6xl px-4 py-3">
+        <div className="flex items-center justify-between gap-3">
+          <a href="#" className="flex min-w-0 flex-col">
+            <span className="truncate text-base font-bold tracking-tight">
+              Space <span className="text-gold">Parfums</span>
+            </span>
+            <span className="hidden text-[11px] text-muted-foreground sm:block">
+              {site.slogan}
+            </span>
           </a>
-        </nav>
+          <a
+            href="#catalogo"
+            className="hidden shrink-0 rounded-full border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-gold/60 hover:text-gold md:block"
+          >
+            Catálogo
+          </a>
+          <button
+            type="button"
+            aria-label="Menú"
+            onClick={() => setOpen(!open)}
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-md text-foreground md:hidden"
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
 
-        {/* Mobile toggle */}
-        <button
-          type="button"
-          aria-label="Abrir menú"
-          onClick={() => setOpen(!open)}
-          className="grid h-10 w-10 place-items-center rounded-md text-primary md:hidden"
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
-      </div>
+        {/* Buscador fijo */}
+        <div className="relative mt-3">
+          <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => onQuery(e.target.value)}
+            placeholder="Buscar perfume o marca… ej: 212, Versace, Lattafa"
+            aria-label="Buscar perfume"
+            className="h-11 w-full rounded-full border border-input bg-card pl-10 pr-4 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-gold/60"
+          />
+        </div>
 
-      {/* Mobile menu */}
-      {open && (
-        <nav className="border-t border-border/60 bg-background px-5 py-4 md:hidden">
-          <div className="flex flex-col gap-1">
-            {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="rounded-md px-2 py-3 text-base font-medium text-foreground transition-colors hover:bg-accent"
-              >
-                {l.label}
-              </a>
-            ))}
+        {open && (
+          <nav className="mt-3 flex flex-col gap-1 border-t border-border/60 pt-3 md:hidden">
             <a
-              href={whatsappLink("Hola Space Perfums, quiero más información sobre sus perfumes.")}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#catalogo"
               onClick={() => setOpen(false)}
-              className="mt-2 rounded-full border border-gold/60 px-4 py-2.5 text-center text-sm font-medium text-primary"
+              className="rounded-md px-2 py-3 text-sm font-medium transition-colors hover:bg-accent"
             >
-              WhatsApp · {site.whatsappDisplay}
+              Catálogo
             </a>
-          </div>
-        </nav>
-      )}
+            <a
+              href="#contacto"
+              onClick={() => setOpen(false)}
+              className="rounded-md px-2 py-3 text-sm font-medium transition-colors hover:bg-accent"
+            >
+              Contacto
+            </a>
+          </nav>
+        )}
+      </div>
     </header>
   );
 }

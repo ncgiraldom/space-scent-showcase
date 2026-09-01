@@ -2,22 +2,22 @@ import { site, whatsappLink } from "@/config/site";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border/60 bg-background">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-5 py-8 text-center">
-        <div className="flex items-baseline gap-1.5">
-          <span className="font-display text-xl font-semibold tracking-wide text-primary">Space</span>
-          <span className="text-[10px] font-medium uppercase tracking-[0.3em] text-gold">Perfums</span>
-        </div>
+    <footer id="contacto" className="border-t border-border/60">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-2 px-4 py-10 text-center">
+        <p className="text-sm font-semibold">
+          Space <span className="text-gold">Parfums</span>
+          <span className="text-muted-foreground"> — Fragancias de alta calidad</span>
+        </p>
         <a
-          href={whatsappLink("Hola Space Perfums.")}
+          href={whatsappLink("Hola Space Parfums.")}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm text-muted-foreground transition-colors hover:text-primary"
+          className="text-sm text-muted-foreground transition-colors hover:text-gold"
         >
           WhatsApp: {site.whatsappDisplay}
         </a>
-        <p className="text-xs text-muted-foreground/70">
-          © {new Date().getFullYear()} Space Perfums. Todos los derechos reservados.
+        <p className="mt-2 text-xs text-muted-foreground/70">
+          © {new Date().getFullYear()} Space Parfums
         </p>
       </div>
     </footer>

@@ -1,24 +1,24 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Catalog } from "@/components/Catalog";
-import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
+import { WhatsappFloat } from "@/components/WhatsappFloat";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Space Perfums — Perfumería en Colombia" },
+      { title: "Space Parfums — Fragancias inspiradas de alta calidad" },
       {
         name: "description",
         content:
-          "Catálogo online de Space Perfums: fragancias originales para hombre, mujer y unisex en Colombia. Consulta disponibilidad por WhatsApp.",
+          "Catálogo de Space Parfums: más de 140 perfumes inspirados para hombre, mujer y unisex. Busca, filtra por familia olfativa y pide por WhatsApp.",
       },
-      { property: "og:title", content: "Space Perfums — Perfumería en Colombia" },
+      { property: "og:title", content: "Space Parfums — Fragancias inspiradas de alta calidad" },
       {
         property: "og:description",
-        content:
-          "Explora el catálogo de fragancias de Space Perfums y consulta por WhatsApp.",
+        content: "Explora nuestra colección de alta perfumería inspirada y pide por WhatsApp.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -28,15 +28,17 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const [query, setQuery] = useState("");
+
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header query={query} onQuery={setQuery} />
       <main>
         <Hero />
-        <Catalog />
-        <Contact />
+        <Catalog query={query} />
       </main>
       <Footer />
+      <WhatsappFloat />
     </div>
   );
 }
