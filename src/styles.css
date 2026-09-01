@@ -2,11 +2,10 @@
 @source "../src";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
 /*
- * Space Perfums — design system
- * Azul oscuro elegante + dorado como acento.
+ * Space Parfums — design system
+ * Modo oscuro moderno y minimalista: negro/gris muy oscuro,
+ * acentos en blanco y plateado, dorado sutil para precios y destacados.
  */
 
 @theme inline {
@@ -15,7 +14,6 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -31,47 +29,59 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-gold: var(--gold);
-  --color-gold-foreground: var(--gold-foreground);
+  --color-silver: var(--silver);
+  --color-whatsapp: var(--whatsapp);
+  --color-whatsapp-foreground: var(--whatsapp-foreground);
+  --color-hombre: var(--hombre);
+  --color-mujer: var(--mujer);
+  --color-unisex: var(--unisex);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-ring-offset-background: var(--background);
-  --font-display: "Cormorant Garamond", "Georgia", serif;
-  --font-sans: "Jost", "Helvetica Neue", sans-serif;
+  --font-sans: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
 }
 
 :root {
-  --radius: 0.5rem;
-  --background: oklch(0.985 0.004 90);
-  --foreground: oklch(0.25 0.05 260);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.25 0.05 260);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.25 0.05 260);
-  /* Azul oscuro sofisticado */
-  --primary: oklch(0.27 0.07 255);
-  --primary-foreground: oklch(0.97 0.01 95);
-  --secondary: oklch(0.955 0.008 95);
-  --secondary-foreground: oklch(0.27 0.07 255);
-  --muted: oklch(0.96 0.006 90);
-  --muted-foreground: oklch(0.52 0.025 255);
-  --accent: oklch(0.955 0.008 95);
-  --accent-foreground: oklch(0.27 0.07 255);
-  /* Dorado moderado */
-  --gold: oklch(0.75 0.09 85);
-  --gold-foreground: oklch(0.27 0.07 255);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0.004 90);
-  --border: oklch(0.9 0.008 255);
-  --input: oklch(0.9 0.008 255);
-  --ring: oklch(0.75 0.09 85);
+  --radius: 0.875rem;
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.97 0 0);
+  --card: oklch(0.195 0 0);
+  --card-foreground: oklch(0.97 0 0);
+  --popover: oklch(0.195 0 0);
+  --popover-foreground: oklch(0.97 0 0);
+  --primary: oklch(0.97 0 0);
+  --primary-foreground: oklch(0.145 0 0);
+  --secondary: oklch(0.24 0 0);
+  --secondary-foreground: oklch(0.97 0 0);
+  --muted: oklch(0.24 0 0);
+  --muted-foreground: oklch(0.68 0 0);
+  --accent: oklch(0.27 0 0);
+  --accent-foreground: oklch(0.97 0 0);
+  --gold: oklch(0.83 0.12 88);
+  --silver: oklch(0.82 0.005 260);
+  --whatsapp: oklch(0.72 0.17 148);
+  --whatsapp-foreground: oklch(0.16 0.02 150);
+  --hombre: oklch(0.72 0.13 240);
+  --mujer: oklch(0.75 0.15 350);
+  --unisex: oklch(0.8 0.09 175);
+  --destructive: oklch(0.6 0.22 27);
+  --destructive-foreground: oklch(0.97 0 0);
+  --border: oklch(0.3 0 0);
+  --input: oklch(0.3 0 0);
+  --ring: oklch(0.83 0.12 88);
 }
 
 @layer base {
   * {
     border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
   }
 
   body {
@@ -80,20 +90,16 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
-
-  h1, h2, h3 {
-    font-family: var(--font-display);
-  }
 }
 
 @utility fade-up {
-  animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -102,9 +108,10 @@
 }
 
 @utility card-hover {
-  transition: box-shadow 0.35s ease, transform 0.35s ease;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 40px -16px oklch(0.27 0.07 255 / 0.18);
+    transform: translateY(-3px);
+    border-color: color-mix(in oklab, var(--gold) 45%, transparent);
+    box-shadow: 0 12px 32px -16px oklch(0 0 0 / 0.8);
   }
 }
