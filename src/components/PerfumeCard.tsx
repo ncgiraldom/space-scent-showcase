@@ -40,10 +40,10 @@ export function PerfumeCard({ perfume }: { perfume: Perfume }) {
           href={whatsappPedido(perfume)}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-1 inline-flex h-9 items-center justify-center gap-1.5 rounded-full bg-whatsapp text-[11px] font-bold text-whatsapp-foreground transition-colors hover:brightness-110 sm:text-xs"
+          className="mt-1 inline-flex h-8 items-center justify-center gap-1.5 rounded-full border border-gold/40 bg-transparent px-3 text-[11px] font-semibold text-gold transition-colors hover:bg-gold/10 sm:text-xs"
         >
-          <MessageCircle size={14} />
-          Pedir por WhatsApp
+          <MessageCircle size={13} />
+          Pedir
         </a>
       </div>
     </article>
