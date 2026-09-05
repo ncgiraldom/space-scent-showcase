@@ -33,9 +33,12 @@ export function PerfumeCard({ perfume }: { perfume: Perfume }) {
         <h3 className="line-clamp-2 text-sm font-semibold leading-snug sm:text-base">
           {perfume.nombre}
         </h3>
-        <span className="mt-auto text-sm font-bold text-gold sm:text-base">
-          {formatPrice(perfume.precio)}
-        </span>
+        <div className="mt-auto flex items-center justify-between gap-2">
+          <span className="text-sm font-bold text-gold sm:text-base">
+            {formatPrice(perfume.precio)}
+          </span>
+          <span className="text-xs text-muted-foreground">{perfume.ml} ml</span>
+        </div>
         <a
           href={whatsappPedido(perfume)}
           target="_blank"

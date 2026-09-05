@@ -10,9 +10,9 @@ export function whatsappLink(message: string) {
   return `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 
-export function whatsappPedido(p: { nombre: string; genero: string; precio: number }) {
+export function whatsappPedido(p: { nombre: string; genero: string; precio: number; ml: number }) {
   return whatsappLink(
-    `Hola Space Parfums, me interesa el perfume ${p.nombre} (${p.genero}) a $${p.precio.toLocaleString("es-CO")} COP. ¿Tienen disponibilidad?`
+    `Hola Space Parfums, me interesa el perfume ${p.nombre} de ${p.ml} ml (${p.genero}) a $${p.precio.toLocaleString("es-CO")} COP. ¿Tienen disponibilidad?`
   );
 }
 
