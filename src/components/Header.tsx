@@ -40,7 +40,7 @@ export function Header({ query, onQuery }: { query: string; onQuery: (v: string)
             type="search"
             value={query}
             onChange={(e) => onQuery(e.target.value)}
-            placeholder="Buscar perfume o marca… ej: 212, Versace, Lattafa"
+            placeholder="Buscar perfume, marca o familia… ej: 212, Versace, vainilla"
             aria-label="Buscar perfume"
             className="h-11 w-full rounded-full border border-input bg-card pl-10 pr-4 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-gold/60"
           />

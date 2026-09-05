@@ -6,7 +6,7 @@ import { ArrowDownUp, SearchX } from "lucide-react";
 const GENEROS: ("Todos" | Genero)[] = ["Todos", "Hombre", "Mujer", "Unisex"];
 
 function normalize(s: string) {
-  return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+  return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
 export function Catalog({ query }: { query: string }) {
@@ -19,7 +19,10 @@ export function Catalog({ query }: { query: string }) {
     let list = perfumes.filter((p) => {
       if (genero !== "Todos" && p.genero !== genero) return false;
       if (familia !== "Todas" && p.familiaGrupo !== familia) return false;
-      if (q && !normalize(p.nombre).includes(q)) return false;
+      if (q) {
+        const target = normalize(`${p.nombre} ${p.familia} ${p.familiaGrupo}`);
+        if (!target.includes(q)) return false;
+      }
       return true;
     });
     if (orden === "asc") list = [...list].sort((a, b) => a.precio - b.precio);
