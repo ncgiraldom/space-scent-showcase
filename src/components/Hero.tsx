@@ -25,7 +25,7 @@ export function Hero() {
               Ver catálogo
             </a>
             <a
-              href={whatsappLink("Hola Space Parfums, ¿no encontré lo que buscaba en el catálogo. ¿Me pueden ayudar?")}
+              href={whatsappLink("Hola Space Parfums, no encontré lo que buscaba en el catálogo. ¿Me pueden ayudar?")}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-whatsapp/60 px-5 py-3 text-sm font-medium text-whatsapp transition-colors hover:bg-whatsapp/10"

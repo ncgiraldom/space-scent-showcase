@@ -12,7 +12,7 @@ export function whatsappLink(message: string) {
 
 export function whatsappPedido(p: { nombre: string; genero: string; precio: number }) {
   return whatsappLink(
-    `Hola Space Parfums, estoy interesado en comprar el perfume: ${p.nombre} (${p.genero}) de precio $${p.precio.toLocaleString("es-CO")} COP. ¿Tienen disponibilidad?`
+    `Hola Space Parfums, me interesa el perfume ${p.nombre} (${p.genero}) a $${p.precio.toLocaleString("es-CO")} COP. ¿Tienen disponibilidad?`
   );
 }
 
