@@ -1,6 +1,5 @@
 import { site, whatsappLink } from "@/config/site";
 import { MessageCircle } from "lucide-react";
-import hero from "@/assets/hero.jpg";
 
 export function Hero() {
   return (
@@ -35,15 +34,11 @@ export function Hero() {
             </a>
           </div>
         </div>
-        <div className="fade-up hidden md:block" style={{ animationDelay: "120ms" }}>
-          <img
-            src={hero}
-            alt="Botella de perfume de lujo en fondo azul oscuro"
-            width={1280}
-            height={1600}
-            className="mx-auto max-h-72 w-auto rounded-2xl object-cover opacity-90"
-          />
-        </div>
+        <div
+          className="hero-image fade-up hidden md:block aspect-[1280/1600] h-72 rounded-2xl opacity-90"
+          style={{ animationDelay: "120ms" }}
+          role="presentation"
+        />
       </div>
     </section>
   );

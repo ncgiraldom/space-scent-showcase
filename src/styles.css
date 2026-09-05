@@ -115,3 +115,9 @@
     box-shadow: 0 12px 32px -16px oklch(0 0 0 / 0.8);
   }
 }
+
+.hero-image {
+  background-image: url("./assets/hero.jpg");
+  background-size: cover;
+  background-position: center;
+}
